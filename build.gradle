@@ -1,0 +1,32 @@
+buildscript {
+    ext.kotlin_version = '0.13.1514'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'application'
+apply plugin: 'kotlin'
+
+mainClassName = 'MainKt'
+
+kapt {
+    generateStubs = true
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "com.google.dagger:dagger:2.0.1"
+    kapt "com.google.dagger:dagger-compiler:2.0.1"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.6'
+}
